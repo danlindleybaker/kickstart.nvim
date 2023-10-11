@@ -60,7 +60,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',          opts = {} },
   { -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -107,7 +107,7 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',         opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -116,14 +116,14 @@ require('lazy').setup({
   -- Only load if `make` is available. Make sure you have the system
   -- requirements installed.
   {
-     'nvim-telescope/telescope-fzf-native.nvim',
+    'nvim-telescope/telescope-fzf-native.nvim',
     -- NOTE: If you are having trouble with this installation,
-     --       refer to the README for telescope-fzf-native for more instructions.
-     build = 'mingw32-make',
-     cond = function()
-       return vim.fn.executable 'mingw32-make' == 1
-     end,
-   },
+    --       refer to the README for telescope-fzf-native for more instructions.
+    build = 'mingw32-make',
+    cond = function()
+      return vim.fn.executable 'mingw32-make' == 1
+    end,
+  },
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -135,6 +135,10 @@ require('lazy').setup({
     end,
   },
 
+  -- plugin to centre buffer in window
+  {
+    'shortcuts/no-neck-pain.nvim', version = "*"
+  },
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -214,10 +218,11 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- 
+vim.keymap.set('n', '<leader>n', ':NoNeckPain<CR>')
+vim.keymap.set('n', '<leader>nl', ':NoNeckPainWidthUp<CR>')
+vim.keymap.set('n', '<leader>nh', ':NoNeckPainWidthDown<CR>')
 
--- Add ability to move lines up and down like VSCode... 
-vim.keymap.set("n", "J", ":m .+1<CR>==")
-vim.keymap.set("n", "K", ":m .-2<CR>==")
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -266,7 +271,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vim'},
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vim' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
