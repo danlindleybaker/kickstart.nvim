@@ -4,7 +4,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -- get cursor to blink!
-vim.cmd [[set guicursor=a:block-blinkon100]]
+vim.cmd [[set guicursor=a:blinkon100]]
+-- change cursor "back to normal" after exiting
+vim.cmd [[au VimLeave * set guicursor=a:ver25-blinkon1]]
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
