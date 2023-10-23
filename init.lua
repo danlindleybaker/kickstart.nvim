@@ -172,7 +172,8 @@ vim.wo.number = true
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
-
+-- change update time 
+vim.o.updatetime = 100
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
